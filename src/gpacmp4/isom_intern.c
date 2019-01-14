@@ -227,7 +227,8 @@ GF_Err gf_isom_parse_movie_boxes(GF_ISOFile *mov, u64 *bytesMissing, Bool progre
 		case GF_ISOM_BOX_TYPE_MOOV:
 			if (mov->moov) {
 				GF_LOG(GF_LOG_ERROR, GF_LOG_CONTAINER, ("[iso file] Duplicate MOOV detected!\n"));
-				return GF_ISOM_INVALID_FILE;
+				// This is a valid case. Some files could have more than one MOOV atoms.
+				// return GF_ISOM_INVALID_FILE;
 			}
 			mov->moov = (GF_MovieBox *)a;
 			/*set our pointer to the movie*/
